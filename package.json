@@ -20,7 +20,7 @@
     "typescript-require": "^0.3.0"
   },
   "scripts": {
-    "test": "mocha --no-timeouts --parallel --reporter mochawesome -require mochawesome/register --reporter-options reportDir=./reports/,reportFilename=testReport --require tsx tests/**/*.test.ts"
+    "test": "mocha --no-timeouts --reporter mochawesome -require mochawesome/register --reporter-options reportDir=./reports/,reportFilename=testReport --require tsx tests/**/*.test.ts"
   },
   "author": "",
   "license": "ISC"
