@@ -1,7 +1,15 @@
 import { Browser, Builder, By, Key, until, WebDriver } from "selenium-webdriver";
 import "chai/register-should";
 import { describe } from "mocha";
-import { findPageHeader, getRGBcode } from "../locators/homePageLocators";
+import {
+  getGameCards,
+  getGenresArray,
+  getOrderArray,
+  getPageHeader,
+  getPlatformsArray,
+} from "../locators/homePageLocators";
+import { GENRES, ORDERING, PLATFORMS } from "../staticData/listElements";
+import { getRGBcode } from "../utility/rgbParser";
 
 describe("Overall page layout test suite", () => {
   let driver: WebDriver;
@@ -20,7 +28,7 @@ describe("Overall page layout test suite", () => {
     title.should.equal("Game-Hub Part-Two");
   });
   it("Page header is correct", async () => {
-    const header = await findPageHeader(driver);
+    const header = await getPageHeader(driver);
     header.should.equal("Games");
   });
   it("Page logo is present and interactable", async () => {
@@ -41,25 +49,44 @@ describe("Overall page layout test suite", () => {
     if (initialColor === "26, 32, 44") newColor.should.equal("255, 255, 255");
     else newColor.should.equal("26, 32, 44");
   });
-  it("Game grid is populted", async () => {
-    const gameGrid = await driver.wait(until.elementLocated(By.css(".css-1hmna4a")), 20000);
-    const gameCards = await gameGrid.findElements(By.css("a"));
+  it("Game grid is populated", async () => {
+    const gameGrid = await getGameCards(driver);
 
-    for (let card of gameCards) {
+    gameGrid.forEach(async (card) => {
       const href = await card.getAttribute("href");
+
       href.should.not.equal("");
-    }
+    });
   });
-  it.only("Genres list is present", async () => {
-    const genresList = await driver.wait(until.elementLocated(By.css(".css-19hjr83")), 5000);
-    const genres = await genresList.findElements(By.css("li"));
+  it("Genres list is present", async () => {
+    let genresArray: string[] = [];
+    const genres = await getGenresArray(driver);
 
     for (let genre of genres) {
       const genreText = await genre.getText();
-      genreText.should.not.equal("");
+      genresArray.push(genreText);
     }
+
+    genresArray.should.have.same.deep.members(GENRES);
   });
-  it("Platform dropdown", async () => {});
-  it("Ordering dropdown", async () => {});
+  it("Platform dropdown", async () => {
+    let platforms: string[] = [];
+    const platformList = await getPlatformsArray(driver);
+
+    for (let platform of platformList) {
+      if ((await platform.getText()) != "") platforms.push(await platform.getText());
+    }
+    platforms.should.have.same.deep.members(PLATFORMS);
+  });
+  it("Ordering dropdown", async () => {
+    let orders: string[] = [];
+    const orderByList = await getOrderArray(driver);
+
+    for (let order of orderByList) {
+      orders.push(await order.getText());
+    }
+
+    orders.should.have.same.deep.members(ORDERING);
+  });
   it("Search bar", async () => {});
 });
