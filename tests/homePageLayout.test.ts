@@ -7,6 +7,7 @@ import {
   getOrderArray,
   getPageHeader,
   getPlatformsArray,
+  getSearchBar,
 } from "../locators/homePageLocators";
 import { GENRES, ORDERING, PLATFORMS } from "../staticData/listElements";
 import { getRGBcode } from "../utility/rgbParser";
@@ -88,5 +89,10 @@ describe("Overall page layout test suite", () => {
 
     orders.should.have.same.deep.members(ORDERING);
   });
-  it("Search bar", async () => {});
+  it("Search bar", async () => {
+    const searchBar = await getSearchBar(driver);
+    await searchBar.sendKeys("Test string");
+    const inputValue = await searchBar.getAttribute("value");
+    inputValue.should.equal("Test string");
+  });
 });

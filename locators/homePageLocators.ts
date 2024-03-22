@@ -23,3 +23,7 @@ export const getOrderArray = async (driver: WebDriver) => {
 
   return await dropdown.findElements(By.css(".css-1kfu8nn button"));
 };
+
+export const getSearchBar = async (driver: WebDriver) => {
+  return await driver.findElement(By.css(".css-18z7r7u"));
+};
