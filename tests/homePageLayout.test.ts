@@ -7,6 +7,7 @@ describe("Overall page layout test suite", () => {
   let driver: WebDriver;
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
+    await driver.manage().window().maximize();
     await driver.get("https://game-hub-lac-sigma.vercel.app/");
   });
   afterEach(async () => {
@@ -49,7 +50,15 @@ describe("Overall page layout test suite", () => {
       href.should.not.equal("");
     }
   });
-  it("Genres list is present", async () => {});
+  it.only("Genres list is present", async () => {
+    const genresList = await driver.wait(until.elementLocated(By.css(".css-19hjr83")), 5000);
+    const genres = await genresList.findElements(By.css("li"));
+
+    for (let genre of genres) {
+      const genreText = await genre.getText();
+      genreText.should.not.equal("");
+    }
+  });
   it("Platform dropdown", async () => {});
   it("Ordering dropdown", async () => {});
   it("Search bar", async () => {});
