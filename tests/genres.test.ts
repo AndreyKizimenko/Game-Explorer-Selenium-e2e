@@ -1,8 +1,7 @@
 import { Browser, Builder, WebDriver, WebElement } from "selenium-webdriver";
 import "chai/register-should";
 import { describe } from "mocha";
-import {
-  getGameCards,
+import {  
   getGameCardsTitles,
   getGenresArray,
   getPageHeader,
