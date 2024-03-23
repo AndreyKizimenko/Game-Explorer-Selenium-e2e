@@ -7,9 +7,20 @@ export const getPageHeader = async (driver: WebDriver) => {
 export const getGameCards = async (driver: WebDriver) => {
   return await driver.wait(until.elementsLocated(By.css(".css-1hmna4a a")), 20000);
 };
+export const getGameCardsTitles = async (driver: WebDriver) => {
+  let gameCardsText: string[] = [];
+  const originalGameCards = await driver.wait(
+    until.elementsLocated(By.css(".css-1hmna4a a h2")),
+    20000
+  );
+  for (const game of originalGameCards) {
+    gameCardsText.push(await game.getText());
+  }
+  return gameCardsText;
+};
 
 export const getGenresArray = async (driver: WebDriver) => {
-  return await driver.wait(until.elementsLocated(By.css(".css-19hjr83 li")), 5000);
+  return await driver.wait(until.elementsLocated(By.css(".css-19hjr83 button")), 5000);
 };
 
 export const getPlatformsArray = async (driver: WebDriver) => {

@@ -1,4 +1,4 @@
-import { Browser, Builder, By, Key, until, WebDriver } from "selenium-webdriver";
+import { Browser, Builder, By, until, WebDriver } from "selenium-webdriver";
 import "chai/register-should";
 import { describe } from "mocha";
 import {
@@ -14,6 +14,7 @@ import { getRGBcode } from "../utility/rgbParser";
 
 describe("Overall page layout test suite", () => {
   let driver: WebDriver;
+
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
     await driver.manage().window().maximize();

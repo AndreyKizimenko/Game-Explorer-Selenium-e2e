@@ -5,9 +5,9 @@
     "passes": 0,
     "pending": 0,
     "failures": 1,
-    "start": "2024-03-22T20:33:01.274Z",
-    "end": "2024-03-22T20:33:03.784Z",
-    "duration": 2510,
+    "start": "2024-03-22T23:13:57.584Z",
+    "end": "2024-03-22T23:14:02.075Z",
+    "duration": 4491,
     "testsRegistered": 1,
     "passPercent": 0,
     "pendingPercent": 0,
@@ -18,45 +18,45 @@
   },
   "results": [
     {
-      "uuid": "b981a301-7085-40d2-be37-62f7a7248c61",
+      "uuid": "8b75e719-d8b9-4115-8509-e78830cfc702",
       "title": "",
-      "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
-      "file": "\\tests\\homePageLayout.test.ts",
+      "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\genres.test.ts",
+      "file": "\\tests\\genres.test.ts",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "d0daaf78-74d7-4d82-b0dc-27e6abd4ac07",
-          "title": "Overall page layout test suite",
-          "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
-          "file": "\\tests\\homePageLayout.test.ts",
+          "uuid": "2af83191-e73b-4b60-897c-b7b917d98ea5",
+          "title": "Searching games by genre",
+          "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\genres.test.ts",
+          "file": "\\tests\\genres.test.ts",
           "beforeHooks": [
             {
-              "title": "\"before each\" hook in \"Overall page layout test suite\"",
-              "fullTitle": "Overall page layout test suite \"before each\" hook in \"Overall page layout test suite\"",
+              "title": "\"before each\" hook in \"Searching games by genre\"",
+              "fullTitle": "Searching games by genre \"before each\" hook in \"Searching games by genre\"",
               "timedOut": false,
-              "duration": 1378,
+              "duration": 1479,
               "state": null,
               "speed": null,
               "pass": false,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "driver=await new Builder().forBrowser(Browser.CHROME).build();await driver.manage().window().maximize();await driver.get(\"https://game-hub-lac-sigma.vercel.app/\")",
+              "code": "driver=await new Builder().forBrowser(Browser.CHROME).build();await driver.manage().window().maximize();await driver.get(\"https://game-hub-lac-sigma.vercel.app/\");genres=await getGenresArray(driver)",
               "err": {},
-              "uuid": "c4b0b6b2-e1a1-4097-9022-882531d811f0",
-              "parentUUID": "d0daaf78-74d7-4d82-b0dc-27e6abd4ac07",
+              "uuid": "55142b21-6ac5-4437-acaf-691390bf9d66",
+              "parentUUID": "2af83191-e73b-4b60-897c-b7b917d98ea5",
               "isHook": true,
               "skipped": false
             }
           ],
           "afterHooks": [
             {
-              "title": "\"after each\" hook in \"Overall page layout test suite\"",
-              "fullTitle": "Overall page layout test suite \"after each\" hook in \"Overall page layout test suite\"",
+              "title": "\"after each\" hook in \"Searching games by genre\"",
+              "fullTitle": "Searching games by genre \"after each\" hook in \"Searching games by genre\"",
               "timedOut": false,
-              "duration": 1043,
+              "duration": 1038,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,32 +65,32 @@
               "context": null,
               "code": "await driver.sleep(1e3);await driver.quit()",
               "err": {},
-              "uuid": "44083bd0-cdf2-4b63-ac3b-956aff61beea",
-              "parentUUID": "d0daaf78-74d7-4d82-b0dc-27e6abd4ac07",
+              "uuid": "4b8c6952-53c2-4aa7-b92a-3bf87c3456e1",
+              "parentUUID": "2af83191-e73b-4b60-897c-b7b917d98ea5",
               "isHook": true,
               "skipped": false
             }
           ],
           "tests": [
             {
-              "title": "Search bar",
-              "fullTitle": "Overall page layout test suite Search bar",
+              "title": "Game grid updates when genre is selected",
+              "fullTitle": "Searching games by genre Game grid updates when genre is selected",
               "timedOut": false,
-              "duration": 83,
+              "duration": 1969,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "const searchBar=await getSearchBar(driver);await searchBar.sendKeys(\"Test string\");const inputValue=await searchBar.getAttribute(\"value\");inputValue.should.equal(\"Test sting\")",
+              "code": "for(const genre of genres){if(await genre.getText()===\"All Genres\")continue;const gameTitles=await getGameCardsTitles(driver);await genre.click();const newGameTitles=await getGameCardsTitles(driver);gameTitles.should.have.same.deep.members(newGameTitles);await driver.sleep(500)}",
               "err": {
-                "message": "AssertionError: expected 'Test string' to equal 'Test sting'",
-                "estack": "AssertionError: expected 'Test string' to equal 'Test sting'\n    at Context.<anonymous> (d:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts:96:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
-                "diff": "- Test string\n+ Test sting\n"
+                "message": "AssertionError: expected [ 'Grand Theft Auto V', …(19) ] to have the same members as [ 'Grand Theft Auto V', …(19) ]",
+                "estack": "AssertionError: expected [ 'Grand Theft Auto V', …(19) ] to have the same members as [ 'Grand Theft Auto V', …(19) ]\n    at Context.<anonymous> (d:\\Learning\\TestAutomation\\Gamehub\\tests\\genres.test.ts:59:40)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": " [\n   \"Grand Theft Auto V\"\n   \"The Witcher 3: Wild Hunt\"\n-   \"Portal 2\"\n-   \"Counter-Strike: Global Offensive\"\n   \"Tomb Raider (2013)\"\n   \"Portal\"\n   \"Left 4 Dead 2\"\n   \"The Elder Scrolls V: Skyrim\"\n   \"Red Dead Redemption 2\"\n   \"BioShock Infinite\"\n-   \"Life is Strange\"\n   \"Borderlands 2\"\n   \"Half-Life 2\"\n   \"BioShock\"\n   \"Destiny 2\"\n   \"Limbo\"\n   \"Fallout 4\"\n   \"DOOM (2016)\"\n   \"PAYDAY 2\"\n+   \"Team Fortress 2\"\n+   \"Cyberpunk 2077\"\n+   \"Horizon Zero Dawn\"\n ]\n"
               },
-              "uuid": "882d2024-4e0b-44ba-8e4a-b0cc4c35f953",
-              "parentUUID": "d0daaf78-74d7-4d82-b0dc-27e6abd4ac07",
+              "uuid": "f53598b0-bac3-48cc-806f-530081da9c76",
+              "parentUUID": "2af83191-e73b-4b60-897c-b7b917d98ea5",
               "isHook": false,
               "skipped": false
             }
@@ -98,11 +98,11 @@
           "suites": [],
           "passes": [],
           "failures": [
-            "882d2024-4e0b-44ba-8e4a-b0cc4c35f953"
+            "f53598b0-bac3-48cc-806f-530081da9c76"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 83,
+          "duration": 1969,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
