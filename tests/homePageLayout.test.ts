@@ -8,7 +8,7 @@ import {
   getPageHeader,
   getPlatformsArray,
   getSearchBar,
-} from "../locators/homePageLocators";
+} from "../hooks/homePageHooks";
 import { GENRES, ORDERING, PLATFORMS } from "../staticData/listElements";
 import { getRGBcode } from "../utility/rgbParser";
 
@@ -27,7 +27,7 @@ describe("Overall page layout test suite", () => {
 
   it("Page title is correct", async () => {
     const title = await driver.getTitle();
-    title.should.equal("Game-Hub Part-Two");
+    title.should.equal("Game Explorer");
   });
   it("Page header is correct", async () => {
     const header = await getPageHeader(driver);

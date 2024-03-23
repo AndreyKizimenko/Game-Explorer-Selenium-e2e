@@ -24,15 +24,21 @@ export const getGenresArray = async (driver: WebDriver) => {
 };
 
 export const getPlatformsArray = async (driver: WebDriver) => {
-  await driver.findElement(By.css(".css-1y0dvn9")).click();
-  return await driver.wait(until.elementsLocated(By.css(".css-1kfu8nn button")), 5000);
+  const filterDropdowns = await driver.wait(
+    until.elementsLocated(By.css(".chakra-menu__group")),
+    5000
+  );
+  await filterDropdowns[0].findElement(By.css("button")).click();
+  return await filterDropdowns[0].findElements(By.css(".css-r6z5ec button"));
 };
 
 export const getOrderArray = async (driver: WebDriver) => {
-  const dropdown = await driver.findElement(By.css(".chakra-menu__group"));
-  await dropdown.click();
-
-  return await dropdown.findElements(By.css(".css-1kfu8nn button"));
+  const filterDropdowns = await driver.wait(
+    until.elementsLocated(By.css(".chakra-menu__group")),
+    5000
+  );
+  await filterDropdowns[1].findElement(By.css("button")).click();
+  return await filterDropdowns[1].findElements(By.css(".css-r6z5ec button"));
 };
 
 export const getSearchBar = async (driver: WebDriver) => {

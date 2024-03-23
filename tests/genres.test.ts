@@ -1,4 +1,4 @@
-import { Browser, Builder, By, Key, until, WebDriver, WebElement } from "selenium-webdriver";
+import { Browser, Builder, WebDriver, WebElement } from "selenium-webdriver";
 import "chai/register-should";
 import { describe } from "mocha";
 import {
@@ -6,7 +6,7 @@ import {
   getGameCardsTitles,
   getGenresArray,
   getPageHeader,
-} from "../locators/homePageLocators";
+} from "../hooks/homePageHooks";
 
 describe("Searching games by genre", () => {
   let driver: WebDriver;
