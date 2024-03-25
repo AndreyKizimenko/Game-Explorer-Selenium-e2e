@@ -96,4 +96,25 @@ describe("Overall page layout test suite", () => {
     const inputValue = await searchBar.getAttribute("value");
     inputValue.should.equal("Test string");
   });
+  it.only("Infinite scrolling fetching", async () => {
+    // function to wait until the game grid updates from scrolling
+    async function scrollAndCheckGrid() {
+      const timeout = 20000;   
+      const initialGrid = await getGameCards(driver);
+      await driver.executeScript("window.scrollBy(0, 2000);");
+      await driver.wait(async function () {
+        const afterScrollGrid = await getGameCards(driver);
+        return initialGrid.length < afterScrollGrid.length;
+      }, timeout);
+
+      return true;
+    }
+
+    let countResult = await scrollAndCheckGrid();
+    countResult.should.be.true;
+    await driver.sleep(2000)
+
+    countResult = await scrollAndCheckGrid();
+    countResult.should.be.true;
+  });
 });
