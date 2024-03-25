@@ -6,7 +6,7 @@ import { GENRES, PLATFORMS } from "../staticData/listElements";
 
 describe("Individual game pages", async () => {
   let driver: WebDriver;
-  const gamesToCheck = 1;
+  const gamesToCheck = 5;
 
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
@@ -133,7 +133,7 @@ describe("Individual game pages", async () => {
     }
   });
 
-  it.only("Publishers are displayed", async () => {
+  it("Publishers are displayed", async () => {
     let gameGrid = await getGameCards(driver);
 
     for (let i = 0; i < gamesToCheck; i++) {
