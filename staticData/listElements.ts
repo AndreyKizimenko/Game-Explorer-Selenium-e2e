@@ -7,8 +7,7 @@ export const PLATFORMS = [
   "Android",
   "Apple Macintosh",
   "Linux",
-  "Nintendo",
-  "Atari",
+  "Nintendo",  
 ];
 
 export const GENRES = [
