@@ -110,11 +110,10 @@ describe("Overall page layout test suite", () => {
       return true;
     }
 
-    let countResult = await scrollAndCheckGrid();
-    countResult.should.be.true;
-    await driver.sleep(2000)
-
-    countResult = await scrollAndCheckGrid();
-    countResult.should.be.true;
+    for (let i = 0; i < 4; i++) {
+      let countResult = await scrollAndCheckGrid();
+      countResult.should.be.true;
+      await driver.sleep(1000)
+    }
   });
 });

@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2024-03-25T05:06:59.264Z",
-    "end": "2024-03-25T05:07:06.141Z",
-    "duration": 6877,
+    "start": "2024-03-25T05:08:41.776Z",
+    "end": "2024-03-25T05:08:55.208Z",
+    "duration": 13432,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "9ffca69a-adef-49f2-b74a-dca4488a0f05",
+      "uuid": "a9ed2eb4-6f0f-4295-8db4-7e746a0aecc6",
       "title": "",
       "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
       "file": "\\tests\\homePageLayout.test.ts",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "dba95c72-3172-4c10-844e-8a2504824e7c",
+          "uuid": "37fee018-0110-40f9-b65f-9db7b18633cd",
           "title": "Overall page layout test suite",
           "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
           "file": "\\tests\\homePageLayout.test.ts",
@@ -36,7 +36,7 @@
               "title": "\"before each\" hook in \"Overall page layout test suite\"",
               "fullTitle": "Overall page layout test suite \"before each\" hook in \"Overall page layout test suite\"",
               "timedOut": false,
-              "duration": 1634,
+              "duration": 1429,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,8 +45,8 @@
               "context": null,
               "code": "driver=await new Builder().forBrowser(Browser.CHROME).build();await driver.manage().window().maximize();await driver.get(\"https://game-hub-lac-sigma.vercel.app/\")",
               "err": {},
-              "uuid": "c6b2a2b1-aa25-49f9-aae3-afa33d336004",
-              "parentUUID": "dba95c72-3172-4c10-844e-8a2504824e7c",
+              "uuid": "da6d76be-8620-48fb-9ff3-068e16440c35",
+              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
               "isHook": true,
               "skipped": false
             }
@@ -56,7 +56,7 @@
               "title": "\"after each\" hook in \"Overall page layout test suite\"",
               "fullTitle": "Overall page layout test suite \"after each\" hook in \"Overall page layout test suite\"",
               "timedOut": false,
-              "duration": 1033,
+              "duration": 1041,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "await driver.sleep(1e3);await driver.quit()",
               "err": {},
-              "uuid": "d39de749-33ba-492e-a0ef-ee0ffe40d22d",
-              "parentUUID": "dba95c72-3172-4c10-844e-8a2504824e7c",
+              "uuid": "7bc3cdbf-3977-46a7-854c-2de71712f219",
+              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
               "isHook": true,
               "skipped": false
             }
@@ -76,29 +76,29 @@
               "title": "Infinite scrolling fetching",
               "fullTitle": "Overall page layout test suite Infinite scrolling fetching",
               "timedOut": false,
-              "duration": 4207,
+              "duration": 10958,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "async function scrollAndCheckGrid(){const timeout=2e4;const initialGrid=await getGameCards(driver);await driver.executeScript(\"window.scrollBy(0, 2000);\");await driver.wait(async function(){const afterScrollGrid=await getGameCards(driver);console.log(initialGrid.length);console.log(afterScrollGrid.length);return initialGrid.length<afterScrollGrid.length},timeout);return true}__name(scrollAndCheckGrid,\"scrollAndCheckGrid\");let countResult=await scrollAndCheckGrid();countResult.should.be.true;await driver.sleep(2e3);countResult=await scrollAndCheckGrid();countResult.should.be.true",
+              "code": "async function scrollAndCheckGrid(){const timeout=2e4;const initialGrid=await getGameCards(driver);await driver.executeScript(\"window.scrollBy(0, 2000);\");await driver.wait(async function(){const afterScrollGrid=await getGameCards(driver);return initialGrid.length<afterScrollGrid.length},timeout);return true}__name(scrollAndCheckGrid,\"scrollAndCheckGrid\");for(let i=0;i<4;i++){let countResult=await scrollAndCheckGrid();countResult.should.be.true;await driver.sleep(2e3)}",
               "err": {},
-              "uuid": "2bffdd48-986d-4ce5-8867-5ba52edaa4f2",
-              "parentUUID": "dba95c72-3172-4c10-844e-8a2504824e7c",
+              "uuid": "3b998631-044d-46d9-b28d-8f325b3d2e29",
+              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "2bffdd48-986d-4ce5-8867-5ba52edaa4f2"
+            "3b998631-044d-46d9-b28d-8f325b3d2e29"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 4207,
+          "duration": 10958,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
