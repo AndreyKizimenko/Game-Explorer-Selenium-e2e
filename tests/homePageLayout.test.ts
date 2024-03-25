@@ -96,7 +96,7 @@ describe("Overall page layout test suite", () => {
     const inputValue = await searchBar.getAttribute("value");
     inputValue.should.equal("Test string");
   });
-  it.only("Infinite scrolling fetching", async () => {
+  it("Infinite scrolling fetching", async () => {
     // function to wait until the game grid updates from scrolling
     async function scrollAndCheckGrid() {
       const timeout = 20000;   

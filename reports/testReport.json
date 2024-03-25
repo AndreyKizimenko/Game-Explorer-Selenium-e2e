@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2024-03-25T05:08:41.776Z",
-    "end": "2024-03-25T05:08:55.208Z",
-    "duration": 13432,
+    "start": "2024-03-25T21:45:56.042Z",
+    "end": "2024-03-25T21:46:00.482Z",
+    "duration": 4440,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,25 +18,25 @@
   },
   "results": [
     {
-      "uuid": "a9ed2eb4-6f0f-4295-8db4-7e746a0aecc6",
+      "uuid": "b6f4aff2-795e-44e2-85d4-bd41d5415ff1",
       "title": "",
-      "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
-      "file": "\\tests\\homePageLayout.test.ts",
+      "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\gamePages.test.ts",
+      "file": "\\tests\\gamePages.test.ts",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "37fee018-0110-40f9-b65f-9db7b18633cd",
-          "title": "Overall page layout test suite",
-          "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\homePageLayout.test.ts",
-          "file": "\\tests\\homePageLayout.test.ts",
+          "uuid": "d2b1648a-1c05-4bcd-92f6-84c7421a5549",
+          "title": "Individual game pages",
+          "fullFile": "D:\\Learning\\TestAutomation\\Gamehub\\tests\\gamePages.test.ts",
+          "file": "\\tests\\gamePages.test.ts",
           "beforeHooks": [
             {
-              "title": "\"before each\" hook in \"Overall page layout test suite\"",
-              "fullTitle": "Overall page layout test suite \"before each\" hook in \"Overall page layout test suite\"",
+              "title": "\"before each\" hook in \"Individual game pages\"",
+              "fullTitle": "Individual game pages \"before each\" hook in \"Individual game pages\"",
               "timedOut": false,
-              "duration": 1429,
+              "duration": 1642,
               "state": null,
               "speed": null,
               "pass": false,
@@ -45,18 +45,18 @@
               "context": null,
               "code": "driver=await new Builder().forBrowser(Browser.CHROME).build();await driver.manage().window().maximize();await driver.get(\"https://game-hub-lac-sigma.vercel.app/\")",
               "err": {},
-              "uuid": "da6d76be-8620-48fb-9ff3-068e16440c35",
-              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
+              "uuid": "82d74b89-8178-43f6-945a-2a4a78844660",
+              "parentUUID": "d2b1648a-1c05-4bcd-92f6-84c7421a5549",
               "isHook": true,
               "skipped": false
             }
           ],
           "afterHooks": [
             {
-              "title": "\"after each\" hook in \"Overall page layout test suite\"",
-              "fullTitle": "Overall page layout test suite \"after each\" hook in \"Overall page layout test suite\"",
+              "title": "\"after each\" hook in \"Individual game pages\"",
+              "fullTitle": "Individual game pages \"after each\" hook in \"Individual game pages\"",
               "timedOut": false,
-              "duration": 1041,
+              "duration": 1069,
               "state": null,
               "speed": null,
               "pass": false,
@@ -65,40 +65,40 @@
               "context": null,
               "code": "await driver.sleep(1e3);await driver.quit()",
               "err": {},
-              "uuid": "7bc3cdbf-3977-46a7-854c-2de71712f219",
-              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
+              "uuid": "be97b1f3-c28d-4f38-9fe6-b0e494164a29",
+              "parentUUID": "d2b1648a-1c05-4bcd-92f6-84c7421a5549",
               "isHook": true,
               "skipped": false
             }
           ],
           "tests": [
             {
-              "title": "Infinite scrolling fetching",
-              "fullTitle": "Overall page layout test suite Infinite scrolling fetching",
+              "title": "Publishers are displayed",
+              "fullTitle": "Individual game pages Publishers are displayed",
               "timedOut": false,
-              "duration": 10958,
+              "duration": 1726,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "async function scrollAndCheckGrid(){const timeout=2e4;const initialGrid=await getGameCards(driver);await driver.executeScript(\"window.scrollBy(0, 2000);\");await driver.wait(async function(){const afterScrollGrid=await getGameCards(driver);return initialGrid.length<afterScrollGrid.length},timeout);return true}__name(scrollAndCheckGrid,\"scrollAndCheckGrid\");for(let i=0;i<4;i++){let countResult=await scrollAndCheckGrid();countResult.should.be.true;await driver.sleep(2e3)}",
+              "code": "let gameGrid=await getGameCards(driver);for(let i=0;i<gamesToCheck;i++){await gameGrid[i].click();const dataList=await driver.wait(until.elementsLocated(By.css(\"dl > div:nth-child(4) p\")));let publishers=[];for(let publisher of dataList){publishers.push(await publisher.getText())}publishers.should.not.be.empty;const logo=await driver.findElement(By.css(\"nav.css-134xcib a\"));await logo.click();gameGrid=await driver.wait(until.elementsLocated(By.css(\".css-1hmna4a a\")),2e4)}",
               "err": {},
-              "uuid": "3b998631-044d-46d9-b28d-8f325b3d2e29",
-              "parentUUID": "37fee018-0110-40f9-b65f-9db7b18633cd",
+              "uuid": "73fc7340-8627-4306-807b-76804c4e786c",
+              "parentUUID": "d2b1648a-1c05-4bcd-92f6-84c7421a5549",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "3b998631-044d-46d9-b28d-8f325b3d2e29"
+            "73fc7340-8627-4306-807b-76804c4e786c"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 10958,
+          "duration": 1726,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
