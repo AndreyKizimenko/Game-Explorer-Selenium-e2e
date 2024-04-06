@@ -11,7 +11,7 @@ describe("Filtering games by platform", () => {
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
     await driver.manage().window().maximize();
-    await driver.get("https://game-hub-lac-sigma.vercel.app/");
+    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
     const filterDropdowns = await driver.wait(
       until.elementsLocated(By.css(".chakra-menu__group")),
       5000

@@ -18,7 +18,7 @@ describe("Overall page layout test suite", () => {
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
     await driver.manage().window().maximize();
-    await driver.get("https://game-hub-lac-sigma.vercel.app/");
+    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
   });
   afterEach(async () => {
     await driver.sleep(1000);
@@ -39,7 +39,7 @@ describe("Overall page layout test suite", () => {
     await logo.click();
 
     const currentURL = await driver.getCurrentUrl();
-    currentURL.should.equal("https://game-hub-lac-sigma.vercel.app/");
+    currentURL.should.equal("https://game-explorer-lac-sigma.vercel.app/");
   });
   it("Dark / Light mode switch", async () => {
     const modeSwitch = await driver.findElement(By.css("nav.css-134xcib button"));

@@ -14,7 +14,7 @@ describe("Searching games by genre", () => {
   beforeEach(async () => {
     driver = await new Builder().forBrowser(Browser.CHROME).build();
     await driver.manage().window().maximize();
-    await driver.get("https://game-hub-lac-sigma.vercel.app/");
+    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
     genres = await getGenresArray(driver);
   });
   afterEach(async () => {
