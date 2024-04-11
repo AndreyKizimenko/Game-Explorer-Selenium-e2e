@@ -9,7 +9,7 @@ describe("Filtering games by platform", () => {
   let driver: WebDriver;
   let searchBar: WebElement;
   beforeEach(async () => {
-    driver = await initialChromeStartup()
+    driver = await initialChromeStartup();
     searchBar = await getSearchBar(driver);
   });
   afterEach(async () => {
@@ -17,12 +17,13 @@ describe("Filtering games by platform", () => {
     await driver.quit();
   });
 
-  it("Default search value", async () => {
+  it("Default search field value should be null", async () => {
     const inputValue = await searchBar.getAttribute("value");
     inputValue.should.equal("");
   });
 
   it("Using search refetches the games", async () => {
+    // itterating through an array of various text inputs, waiting for the list to update and comparing it against the original list
     for (const input of searchInputs) {
       const gameTitles = await getGameCardsTitles(driver);
       await searchBar.sendKeys(input);
@@ -33,6 +34,7 @@ describe("Filtering games by platform", () => {
     }
   });
   it("Search results match search input", async () => {
+    // running multiple searches and asserting that each result contains the search keyword
     for (const input of searchInputs) {
       await searchBar.sendKeys(input);
       await driver.sleep(1000);
