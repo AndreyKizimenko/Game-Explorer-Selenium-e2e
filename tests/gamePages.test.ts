@@ -3,15 +3,14 @@ import "chai/register-should";
 import { describe } from "mocha";
 import { getGameCards } from "../hooks/homePageHooks";
 import { GENRES, PLATFORMS } from "../staticData/listElements";
+import initialChromeStartup from "../hooks/testStartup";
 
 describe("Individual game pages", async () => {
   let driver: WebDriver;
   const gamesToCheck = 5;
 
   beforeEach(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.manage().window().maximize();
-    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
+    driver = await initialChromeStartup()
   });
   afterEach(async () => {
     await driver.sleep(1000);

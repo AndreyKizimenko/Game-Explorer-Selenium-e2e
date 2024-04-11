@@ -2,15 +2,14 @@ import { Browser, Builder, WebDriver, WebElement } from "selenium-webdriver";
 import "chai/register-should";
 import { afterEach, describe } from "mocha";
 import { getGameCardsTitles, getSearchBar } from "../hooks/homePageHooks";
+import initialChromeStartup from "../hooks/testStartup";
 
 describe("Filtering games by platform", () => {
   const searchInputs = ["Crown", "Gun", "Car", "Portal", "World", "Simulator"];
   let driver: WebDriver;
   let searchBar: WebElement;
   beforeEach(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.manage().window().maximize();
-    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
+    driver = await initialChromeStartup()
     searchBar = await getSearchBar(driver);
   });
   afterEach(async () => {

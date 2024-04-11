@@ -2,6 +2,7 @@ import { Browser, Builder, By, until, WebDriver, WebElement } from "selenium-web
 import "chai/register-should";
 import { afterEach, describe } from "mocha";
 import { getGameCardsTitles } from "../hooks/homePageHooks";
+import initialChromeStartup from "../hooks/testStartup";
 
 describe("Filtering games by platform", () => {
   let driver: WebDriver;
@@ -9,9 +10,7 @@ describe("Filtering games by platform", () => {
   let platformButton: WebElement;
 
   beforeEach(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.manage().window().maximize();
-    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
+    driver = await initialChromeStartup()
     const filterDropdowns = await driver.wait(
       until.elementsLocated(By.css(".chakra-menu__group")),
       5000

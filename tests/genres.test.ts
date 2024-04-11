@@ -6,15 +6,14 @@ import {
   getGenresArray,
   getPageHeader,
 } from "../hooks/homePageHooks";
+import initialChromeStartup from "../hooks/testStartup";
 
 describe("Searching games by genre", () => {
   let driver: WebDriver;
   let genres: WebElement[];
 
   beforeEach(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.manage().window().maximize();
-    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
+    driver = await initialChromeStartup()
     genres = await getGenresArray(driver);
   });
   afterEach(async () => {

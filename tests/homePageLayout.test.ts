@@ -11,14 +11,13 @@ import {
 } from "../hooks/homePageHooks";
 import { GENRES, ORDERING, PLATFORMS } from "../staticData/listElements";
 import { getRGBcode } from "../utility/rgbParser";
+import initialChromeStartup from "../hooks/testStartup";
 
 describe("Overall page layout test suite", () => {
   let driver: WebDriver;
 
   beforeEach(async () => {
-    driver = await new Builder().forBrowser(Browser.CHROME).build();
-    await driver.manage().window().maximize();
-    await driver.get("https://game-explorer-lac-sigma.vercel.app/");
+    driver = await initialChromeStartup()
   });
   afterEach(async () => {
     await driver.sleep(1000);
