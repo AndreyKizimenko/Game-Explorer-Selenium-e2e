@@ -21,7 +21,7 @@ describe("Searching games by genre", () => {
     await driver.quit();
   });
 
-  it("Selected genre style", async () => {
+  it("Selected genre style updates according upon selection", async () => {
     const defaultColor = await genres[genres.length - 1].getCssValue("color");
     const defaultSize = await genres[genres.length - 1].getCssValue("font-size");
 
