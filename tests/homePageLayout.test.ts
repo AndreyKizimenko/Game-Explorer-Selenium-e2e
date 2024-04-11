@@ -37,29 +37,31 @@ describe("Overall page layout test suite", () => {
     await driver.wait(until.elementIsVisible(logo), 10000);
     await logo.click();
 
+    // verifying that the user remains on the homepage
     const currentURL = await driver.getCurrentUrl();
     currentURL.should.equal("https://game-explorer-lac-sigma.vercel.app/");
   });
   it("Dark / Light mode switch", async () => {
     const modeSwitch = await driver.findElement(By.css("nav.css-134xcib button"));
+    // capturing the current body theme to later compare it against the dark mode
     const initialColor = await getRGBcode(driver);
     await driver.wait(until.elementIsVisible(modeSwitch), 10000);
     await modeSwitch.click();
+    // capturing and comparing an updated color scheme
     const newColor = await getRGBcode(driver);
-
     if (initialColor === "26, 32, 44") newColor.should.equal("255, 255, 255");
     else newColor.should.equal("26, 32, 44");
   });
   it("Game grid is populated", async () => {
+    // each game grid card should have an associated href on it
     const gameGrid = await getGameCards(driver);
-
     gameGrid.forEach(async (card) => {
       const href = await card.getAttribute("href");
 
       href.should.not.equal("");
     });
   });
-  it("Genres list is present", async () => {
+  it("Genres list is present and includes all expected game genres", async () => {
     let genresArray: string[] = [];
     const genres = await getGenresArray(driver);
 
@@ -70,7 +72,7 @@ describe("Overall page layout test suite", () => {
 
     genresArray.should.have.same.deep.members(GENRES);
   });
-  it("Platform dropdown", async () => {
+  it("Platform dropdown is interactable and contains all the expected platforms", async () => {
     let platforms: string[] = [];
     const platformList = await getPlatformsArray(driver);
 
@@ -79,7 +81,7 @@ describe("Overall page layout test suite", () => {
     }
     platforms.should.have.same.deep.members(PLATFORMS);
   });
-  it("Ordering dropdown", async () => {
+  it("Ordering dropdown is interactable and contains all the expected ordering options", async () => {
     let orders: string[] = [];
     const orderByList = await getOrderArray(driver);
 
@@ -89,7 +91,7 @@ describe("Overall page layout test suite", () => {
 
     orders.should.have.same.deep.members(ORDERING);
   });
-  it("Search bar", async () => {
+  it("Search bar accepts user input and its value correctly updates", async () => {
     const searchBar = await getSearchBar(driver);
     await searchBar.sendKeys("Test string");
     const inputValue = await searchBar.getAttribute("value");
@@ -108,7 +110,7 @@ describe("Overall page layout test suite", () => {
 
       return true;
     }
-
+    // Scrolling 4 times to make sure that the grid updates after each scroll
     for (let i = 0; i < 4; i++) {
       let countResult = await scrollAndCheckGrid();
       countResult.should.be.true;
