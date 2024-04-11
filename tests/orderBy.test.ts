@@ -23,7 +23,7 @@ describe("Filtering games by order", () => {
     await driver.quit();
   });
 
-  it("Default order", async () => {
+  it("Default order should be by Relevance", async () => {
     const defaultSelection = await orderDropdown.findElement(By.css(".css-xl71ch")).getText();
     defaultSelection.should.equal("Order by: Relevance");
   });
