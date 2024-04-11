@@ -23,7 +23,7 @@ describe("Filtering games by platform", () => {
     await driver.quit();
   });
 
-  it("Default platform", async () => {
+  it("Default platform is set to All Platforms", async () => {
     const defaultSelection = await platformDropdown.findElement(By.css(".css-xl71ch")).getText();
     defaultSelection.should.equal("All Platforms");
   });
